@@ -18,6 +18,7 @@ services:
     depends_on:
       - zookeeper
     ports:
+      - "9092:9092"
       - "19092:19092"
     networks:
       - ids-network
