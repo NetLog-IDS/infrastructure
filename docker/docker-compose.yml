@@ -54,6 +54,20 @@ services:
               properties:
                 bootstrap.servers: "kafka:9092"
 
+  kafka-specs:
+    build: kafka-specs/
+    container_name: kafka-specs
+    volumes:
+      - ${PWD}/kafka-specs/kafka-stack-spec.yml:/kafka-stack-spec.yml
+    depends_on:
+      - kafka
+    command:
+      - kafka:9092
+    environment:
+      - KAFKA_SPECS_YAML=/kafka-stack-spec.yml
+    networks:
+      - ids-network
+
   jobmanager:
     image: flink:1.18.1-java11
     container_name: jobmanager
@@ -85,6 +99,30 @@ services:
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
         taskmanager.numberOfTaskSlots: 6
+
+  netlog:
+    image: recedivies09/spoofy:latest
+    container_name: netlog
+    hostname: netlog
+    network_mode: "host"
+    depends_on:
+      - kafka
+    entrypoint:
+      [
+        "/wait-for-it.sh",
+        "localhost:19092",
+        "--",
+        "/usr/local/bin/spoofy",
+        "-i",
+        "wlo1",
+        "--live",
+        "--sender",
+        "kafka",
+        "--broker",
+        "localhost:19092",
+        "--topic",
+        "network-traffic",
+      ]
 
 networks:
   ids-network:
