@@ -12,29 +12,37 @@ provider "aws" {
   profile = "default"
 }
 
-resource "aws_vpc" "my_vpc" {
-  cidr_block = "10.0.0.0/16"
+resource "aws_key_pair" "deployer" {
+  key_name   = "deployer-key"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCulyTEu3/ByEQcnHoSFmO/EddIMXEOsJ+jEHp4lL1Bz1tfTIysiQpqnI8Jj+2L1nAthMx9Cq5aw8feQtTsxe6Ipjqifzk/K3raPIBRcZpwTu0FvhpgeK4hNQPfKemfo5aavz8F79cN2+BbcLf1gVf9pazmyEV4Vqi/enHsYvZkxW4rUBkodXvSBmYeYMnJ2ALt9m2mACB4Af/2YcGuYIqCoyRwydYEHVMnmBZkCwPDt2/VaUVkGfBYTAFIFZdKByN81OEN8nNzkSRjcxQtAuJ3hFBJWQCevo8ftr0pjBrEoLuuiIqescCCdw71FD8fZkUuzhn5XlbqQdVnA6+zhC7H ta@jomamas.csl"
+}
 
-  tags = {
-    Name = "netlog_network"
+resource "aws_security_group" "allow_ssh" {
+  name        = "allow_ssh"
+  description = "Allow SSH access"
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
-resource "aws_subnet" "my_subnet" {
-  vpc_id            = aws_vpc.my_vpc.id
-  cidr_block        = "10.0.0.0/24"
-  availability_zone = "us-east-1a"
-
-  tags = {
-    Name = "netlog_subnet_1"
-  }
-}
 
 resource "aws_instance" "my_vm_1" {
   ami                         = "ami-0e1bed4f06a3b463d"
   instance_type               = "t2.micro"
-  subnet_id                   = aws_subnet.my_subnet.id
   associate_public_ip_address = true
+  key_name                    = aws_key_pair.deployer.key_name
+  security_groups             = [aws_security_group.allow_ssh.name]
 
   tags = {
     Name = "my_vm_1"
