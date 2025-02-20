@@ -1,0 +1,15 @@
+configuration = [
+  {
+    "application_name" : "docker",
+    "ami" : "ami-0e1bed4f06a3b463d",
+    "no_of_instances" : 3,
+    "instance_type" : "t2.micro",
+  },
+  {
+    "application_name" : "kafka",
+    "ami" : "ami-0e1bed4f06a3b463d",
+    "instance_type" : "t2.micro",
+    "no_of_instances" : 2
+  },
+  
+]
