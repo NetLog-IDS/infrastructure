@@ -12,12 +12,12 @@ provider "aws" {
   profile = "default"
 }
 
-/*
+
 resource "aws_key_pair" "deployer" {
   key_name   = "deployer-key"
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCulyTEu3/ByEQcnHoSFmO/EddIMXEOsJ+jEHp4lL1Bz1tfTIysiQpqnI8Jj+2L1nAthMx9Cq5aw8feQtTsxe6Ipjqifzk/K3raPIBRcZpwTu0FvhpgeK4hNQPfKemfo5aavz8F79cN2+BbcLf1gVf9pazmyEV4Vqi/enHsYvZkxW4rUBkodXvSBmYeYMnJ2ALt9m2mACB4Af/2YcGuYIqCoyRwydYEHVMnmBZkCwPDt2/VaUVkGfBYTAFIFZdKByN81OEN8nNzkSRjcxQtAuJ3hFBJWQCevo8ftr0pjBrEoLuuiIqescCCdw71FD8fZkUuzhn5XlbqQdVnA6+zhC7H ta@jomamas.csl"
 }
-*/
+
 
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
@@ -79,7 +79,7 @@ resource "aws_instance" "example_server" {
   ami                         = each.value.ami
   instance_type               = each.value.instance_type
   associate_public_ip_address = true
-  key_name                    = "tugasakhir"
+  key_name                    = aws_key_pair.deployer.key_name
   security_groups             = [aws_security_group.allow_ssh.name]
 
   tags = {
