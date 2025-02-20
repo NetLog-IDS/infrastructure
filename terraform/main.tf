@@ -40,16 +40,18 @@ resource "aws_security_group" "allow_ssh" {
 
 variable "configuration" {
   description = "EC2 configuration"
-  default = [{}]
+  default     = [{}]
 }
 
 locals {
   serverconfig = [
     for srv in var.configuration : [
-      for i in range(1, srv.no_of_instances+1) : {
+      for i in range(1, srv.no_of_instances + 1) : {
         instance_name = "${srv.application_name}-${i}"
         instance_type = srv.instance_type
-        ami = srv.ami
+        ami           = srv.ami
+        script_path   = srv.script_path
+        params        = srv.params
       }
     ]
   ]
@@ -74,21 +76,22 @@ resource "aws_instance" "my_vm_1" {
 */
 
 resource "aws_instance" "example_server" {
-  for_each = {for server in local.instances: server.instance_name =>  server}
+  for_each = { for server in local.instances : server.instance_name => server }
 
   ami                         = each.value.ami
   instance_type               = each.value.instance_type
   associate_public_ip_address = true
-  # key_name                    = aws_key_pair.deployer.key_name
-  key_name                    = "tugasakhir"
-  security_groups             = [aws_security_group.allow_ssh.name]
-  user_data = <<-EOF
+  key_name                    = aws_key_pair.deployer.key_name
+  # key_name        = "tugasakhir"
+  security_groups = [aws_security_group.allow_ssh.name]
+  user_data       = <<-EOF
               #!/bin/bash
               sudo apt update && sudo apt upgrade -y
               curl -fsSl https://get.docker.com -o get-docker.sh
               sudo sh ./get-docker.sh
               sudo usermod -aG docker $USER
               newgrp docker
+              echo "Installation Complete" > /tmp/docker-installation-complete
               EOF
 
   tags = {
@@ -96,7 +99,44 @@ resource "aws_instance" "example_server" {
   }
 }
 
+resource "terraform_data" "container_setup" {
+  for_each = { for server in local.instances : server.instance_name => server }
+
+  depends_on = [aws_instance.example_server]
+
+  provisioner "file" {
+    source      = each.value.script_path
+    destination = "/tmp/${basename(each.value.script_path)}"
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      host        = aws_instance.example_server[each.value.instance_name].public_ip
+      private_key = file("~/.ssh/deployer-key")
+    }
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "while [ ! -f /tmp/docker-installation-complete ]; do sleep 10; done",
+      "chmod +x /tmp/${basename(each.value.script_path)}",
+      "cd /tmp && ./${basename(each.value.script_path)} ${join(" ", [
+        for param in each.value.params : regex("ip:", param) != null
+        ? aws_instance.example_server[substr(param, 3, length(param) - 3)].private_ip
+        : param
+      ])}",
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      host        = aws_instance.example_server[each.value.instance_name].public_ip
+      private_key = file("~/.ssh/deployer-key")
+    }
+  }
+}
+
 output "instances" {
-  value       = "${aws_instance.example_server}"
+  value       = aws_instance.example_server
   description = "EC2 details"
 }

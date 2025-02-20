@@ -4,29 +4,15 @@ configuration = [
     "ami" : "ami-0e1bed4f06a3b463d",
     "no_of_instances" : 1,
     "instance_type" : "t2.micro",
+    "script_path": "scripts/netlog.sh",
+    "params": ["ip:zookeeper-1"],
   },
   {
     "application_name" : "zookeeper",
     "ami" : "ami-0e1bed4f06a3b463d",
     "instance_type" : "t2.micro",
-    "no_of_instances" : 1
-  },
-  {
-    "application_name" : "kafka",
-    "ami" : "ami-0e1bed4f06a3b463d",
-    "instance_type" : "t2.micro",
-    "no_of_instances" : 1
-  },
-  {
-    "application_name" : "flink-job-manager",
-    "ami" : "ami-0e1bed4f06a3b463d",
-    "instance_type" : "t2.micro",
-    "no_of_instances" : 1
-  },
-  {
-    "application_name" : "flink-task-manager",
-    "ami" : "ami-0e1bed4f06a3b463d",
-    "instance_type" : "t2.micro",
-    "no_of_instances" : 3
+    "no_of_instances" : 1,
+    "script_path": "scripts/zookeeper.sh",
+    "params": ["ip:netlog-1", "heh"],
   },
 ]
