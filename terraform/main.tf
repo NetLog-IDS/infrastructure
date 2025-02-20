@@ -79,8 +79,17 @@ resource "aws_instance" "example_server" {
   ami                         = each.value.ami
   instance_type               = each.value.instance_type
   associate_public_ip_address = true
-  key_name                    = aws_key_pair.deployer.key_name
+  # key_name                    = aws_key_pair.deployer.key_name
+  key_name                    = "tugasakhir"
   security_groups             = [aws_security_group.allow_ssh.name]
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo apt update && sudo apt upgrade -y
+              curl -fsSl https://get.docker.com -o get-docker.sh
+              sudo sh ./get-docker.sh
+              sudo usermod -aG docker $USER
+              newgrp docker
+              EOF
 
   tags = {
     Name = "${each.value.instance_name}"

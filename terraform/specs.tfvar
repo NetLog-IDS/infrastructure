@@ -1,15 +1,32 @@
 configuration = [
   {
-    "application_name" : "docker",
+    "application_name" : "netlog",
     "ami" : "ami-0e1bed4f06a3b463d",
-    "no_of_instances" : 3,
+    "no_of_instances" : 1,
     "instance_type" : "t2.micro",
+  },
+  {
+    "application_name" : "zookeeper",
+    "ami" : "ami-0e1bed4f06a3b463d",
+    "instance_type" : "t2.micro",
+    "no_of_instances" : 1
   },
   {
     "application_name" : "kafka",
     "ami" : "ami-0e1bed4f06a3b463d",
     "instance_type" : "t2.micro",
-    "no_of_instances" : 2
+    "no_of_instances" : 1
   },
-  
+  {
+    "application_name" : "flink-job-manager",
+    "ami" : "ami-0e1bed4f06a3b463d",
+    "instance_type" : "t2.micro",
+    "no_of_instances" : 1
+  },
+  {
+    "application_name" : "flink-task-manager",
+    "ami" : "ami-0e1bed4f06a3b463d",
+    "instance_type" : "t2.micro",
+    "no_of_instances" : 3
+  },
 ]
