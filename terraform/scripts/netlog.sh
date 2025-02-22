@@ -1,3 +1,8 @@
 #!/bin/bash
-OTHER_IP=$1
-echo "Netlog connects to $OTHER_IP" > test.txt
+KAFKA_IP=$1
+sudo docker run --name netlog \
+    --hostname netlog \
+    --network host \
+    --entrypoint bash \
+    -d \
+    recedivies09/spoofy:latest -c "/wait-for-it.sh $KAFKA_IP:19092 -- /usr/local/bin/spoofy -i ens3 --live --sender kafka --broker $KAFKA_IP:19092 --topic network-traffic"
