@@ -23,4 +23,28 @@ configuration = [
     "script_path": "scripts/kafka.sh",
     "params": ["ip:kafka-1", "ip:zookeeper-1"],
   },
+  {
+    "application_name" : "kafkahq",
+    "ami" : "ami-0e1bed4f06a3b463d",
+    "instance_type" : "t2.micro",
+    "no_of_instances" : 1,
+    "script_path": "scripts/kafkahq.sh",
+    "params": ["ip:kafka-1"],
+  },
+  {
+    "application_name" : "flink-jobmanager",
+    "ami" : "ami-0e1bed4f06a3b463d",
+    "instance_type" : "t2.large",
+    "no_of_instances" : 1,
+    "script_path": "scripts/flink-jobmanager.sh",
+    "params": ["ip:flink-jobmanager-1"],
+  },
+  {
+    "application_name" : "flink-taskmanager",
+    "ami" : "ami-0e1bed4f06a3b463d",
+    "instance_type" : "t2.large",
+    "no_of_instances" : 3,
+    "script_path": "scripts/flink-taskmanager.sh",
+    "params": ["ip:flink-jobmanager-1"],
+  },
 ]
