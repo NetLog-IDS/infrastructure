@@ -5,3 +5,51 @@ topics:
     replication_factor: 1
     configs:
       min.insync.replicas: "1"
+
+  - name: network-flows
+    partitions: 6
+    replication_factor: 1
+    configs:
+      min.insync.replicas: "1"
+
+  - name: intrusion
+    partitions: 1
+    replication_factor: 1
+    configs:
+      min.insync.replicas: "1"
+
+  - name: dos
+    partitions: 1
+    replication_factor: 1
+    configs:
+      min.insync.replicas: "1"
+
+  - name: port-scan
+    partitions: 1
+    replication_factor: 1
+    configs:
+      min.insync.replicas: "1"
+
+  - name: benign
+    partitions: 1
+    replication_factor: 1
+    configs:
+      min.insync.replicas: "1"
+
+  - name: infiltration
+    partitions: 1
+    replication_factor: 1
+    configs:
+      min.insync.replicas: "1"
+
+  - name: web-attack
+    partitions: 1
+    replication_factor: 1
+    configs:
+      min.insync.replicas: "1"
+
+  - name: brute-force
+    partitions: 1
+    replication_factor: 1
+    configs:
+      min.insync.replicas: "1"
