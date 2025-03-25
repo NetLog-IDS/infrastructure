@@ -1,18 +1,12 @@
 version: 1
 topics:
   - name: network-traffic
-    partitions: 6
+    partitions: 1
     replication_factor: 1
     configs:
       min.insync.replicas: "1"
 
   - name: network-flows
-    partitions: 6
-    replication_factor: 1
-    configs:
-      min.insync.replicas: "1"
-
-  - name: intrusion
     partitions: 1
     replication_factor: 1
     configs:
@@ -49,6 +43,12 @@ topics:
       min.insync.replicas: "1"
 
   - name: brute-force
+    partitions: 1
+    replication_factor: 1
+    configs:
+      min.insync.replicas: "1"
+
+  - name: bot
     partitions: 1
     replication_factor: 1
     configs:
