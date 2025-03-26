@@ -100,30 +100,58 @@ services:
         jobmanager.rpc.address: jobmanager
         taskmanager.numberOfTaskSlots: 6
 
-  netlog:
-    image: recedivies09/spoofy:latest
-    container_name: netlog
-    hostname: netlog
-    # network_mode: "host"
-    networks:
-      - ids-network
-    depends_on:
-      - kafka
-    entrypoint: [
+  netlogdivies:
+    image: recedivies09/netlogdivies:latest
+    container_name: netlogdivies
+    hostname: netlogdivies
+    command:
+      [
         "/wait-for-it.sh",
         "kafka:9092",
         "--",
-        "/usr/local/bin/spoofy",
+        "./netlogdivies",
         "-i",
-        "thu-webattack-xss.pcapng", # wlo1
-        # "--live",
+        "fri-portscan.pcapng",
+        "-f",
+        "tcp or udp",
         "--sender",
         "kafka",
         "--broker",
         "kafka:9092",
         "--topic",
         "network-traffic",
+        "--mode",
+        "unordered",
       ]
+    depends_on:
+      - kafka
+    networks:
+      - ids-network
+
+  # netlog:
+  #   image: spoofy:latest
+  #   container_name: netlog
+  #   hostname: netlog
+  #   # network_mode: "host"
+  #   networks:
+  #     - ids-network
+  #   depends_on:
+  #     - kafka
+  #   entrypoint: [
+  #       "/wait-for-it.sh",
+  #       "kafka:9092",
+  #       "--",
+  #       "/usr/local/bin/spoofy",
+  #       "-i",
+  #       "thu-webattack-xss.pcapng", # wlo1
+  #       # "--live",
+  #       "--sender",
+  #       "kafka",
+  #       "--broker",
+  #       "kafka:9092",
+  #       "--topic",
+  #       "network-traffic",
+  #     ]
 
 networks:
   ids-network:
