@@ -86,5 +86,35 @@ services:
     entrypoint: /bin/sh
     tty: true
 
+  netlogdivies:
+    image: recedivies09/netlogdivies:latest
+    container_name: netlogdivies
+    hostname: netlogdivies
+    command:
+      [
+        "/wait-for-it.sh",
+        "kafka:9092",
+        "--",
+        "./netlogdivies",
+        "-i",
+        "/wednesday_test.pcap",
+        "-f",
+        "tcp or udp",
+        "--sender",
+        "kafka",
+        "--broker",
+        "kafka:9092",
+        "--topic",
+        "network-traffic",
+        "--mode",
+        "ordered",
+      ]
+    depends_on:
+      - kafka
+    volumes:
+      - /mnt/extra/datasets/processed/wednesday_test.pcap:/wednesday_test.pcap
+    networks:
+      - ids-network
+
 networks:
   ids-network:
