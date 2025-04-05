@@ -106,9 +106,6 @@ services:
     hostname: netlogdivies
     command:
       [
-        "/wait-for-it.sh",
-        "kafka:9092",
-        "--",
         "./netlogdivies",
         "-i",
         "fri-portscan.pcapng",
@@ -121,10 +118,11 @@ services:
         "--topic",
         "network-traffic",
         "--mode",
-        "unordered",
+        "ordered",
       ]
     depends_on:
-      - kafka
+      kafka-specs:
+        condition: service_completed_successfully
     networks:
       - ids-network
 
