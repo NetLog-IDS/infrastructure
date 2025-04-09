@@ -52,6 +52,7 @@ locals {
         ami           = srv.ami
         script_path   = srv.script_path
         params        = srv.params
+        healthcheck_cmd = srv.healthcheck_cmd
       }
     ]
   ]
@@ -81,8 +82,8 @@ resource "aws_instance" "example_server" {
   ami                         = each.value.ami
   instance_type               = each.value.instance_type
   associate_public_ip_address = true
-  key_name                    = aws_key_pair.deployer.key_name
-  # key_name        = "tugasakhir"
+  # key_name                    = aws_key_pair.deployer.key_name
+  key_name        = "tugasakhir"
   security_groups = [aws_security_group.allow_ssh.name]
   user_data       = <<-EOF
               #!/bin/bash
@@ -112,7 +113,8 @@ resource "terraform_data" "container_setup" {
       type        = "ssh"
       user        = "ubuntu"
       host        = aws_instance.example_server[each.value.instance_name].public_ip
-      private_key = file("~/.ssh/deployer-key")
+      # private_key = file("~/.ssh/deployer-key")
+      private_key = file("./keys/tugasakhir.pem")
     }
   }
 
@@ -125,13 +127,15 @@ resource "terraform_data" "container_setup" {
         ? aws_instance.example_server[substr(param, 3, length(param) - 3)].private_ip
         : param
       ])}",
+      lookup(each.value, "healthcheck_cmd", "echo 'No healthcheck specified'")
     ]
 
     connection {
       type        = "ssh"
       user        = "ubuntu"
       host        = aws_instance.example_server[each.value.instance_name].public_ip
-      private_key = file("~/.ssh/deployer-key")
+      # private_key = file("~/.ssh/deployer-key")
+      private_key = file("./keys/tugasakhir.pem")
     }
   }
 }
