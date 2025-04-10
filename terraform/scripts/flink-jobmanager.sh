@@ -8,6 +8,7 @@ sudo docker run -d \
   -p 6124:6124 \
   -e FLINK_PROPERTIES="jobmanager.rpc.address: $JOB_MANAGER_IP
 rest.address: $JOB_MANAGER_IP
+jobmanager.memory.process.size: 2048m
 rest.port: 8082" \
   flink:1.18.1-java11 \
   jobmanager

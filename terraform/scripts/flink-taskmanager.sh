@@ -4,6 +4,7 @@ sudo docker run -d \
   --name taskmanager \
   --hostname taskmanager \
   -e FLINK_PROPERTIES="jobmanager.rpc.address: $JOB_MANAGER_IP
-taskmanager.numberOfTaskSlots: 6" \
+taskmanager.numberOfTaskSlots: 6
+taskmanager.memory.process.size: 2048m" \
   flink:1.18.1-java11 \
   taskmanager
