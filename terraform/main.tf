@@ -179,6 +179,9 @@ resource "terraform_data" "transfer_files" {
 }
 
 output "instances" {
-  value       = aws_instance.example_server
+  value = {
+    for instance in aws_instance.example_server :
+    instance.tags.Name => instance.public_ip
+  }
   description = "EC2 details"
 }
