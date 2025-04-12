@@ -12,13 +12,13 @@ topics:
     configs:
       min.insync.replicas: "1"
 
-  - name: dos
+  - name: DOS
     partitions: 1
     replication_factor: 1
     configs:
       min.insync.replicas: "1"
 
-  - name: port-scan
+  - name: PORT_SCAN
     partitions: 1
     replication_factor: 1
     configs:

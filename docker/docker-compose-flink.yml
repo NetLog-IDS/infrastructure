@@ -102,8 +102,34 @@ services:
         taskmanager.memory.process.size: 2048m
         taskmanager.numberOfTaskSlots: 6
 
+  portscan:
+    image: emyr298/prediction
+    container_name: portscan_prediction
+    hostname: portscan
+    depends_on:
+      kafka-specs:
+        condition: service_completed_successfully
+    networks:
+      - ids-network
+    environment:
+      BOOTSTRAP_SERVER: kafka:9092
+      OUTPUT_TOPIC: PORT_SCAN
+
+  dos:
+    image: emyr298/prediction
+    container_name: dos_prediction
+    hostname: dos
+    depends_on:
+      kafka-specs:
+        condition: service_completed_successfully
+    networks:
+      - ids-network
+    environment:
+      BOOTSTRAP_SERVER: kafka:9092
+      OUTPUT_TOPIC: DOS
+
   netlogdivies:
-    image: netlogdivies
+    image: emyr298/netlogdivies
     container_name: netlogdivies
     hostname: netlogdivies
     command:
