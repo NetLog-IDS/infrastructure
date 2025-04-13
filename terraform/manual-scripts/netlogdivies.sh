@@ -3,8 +3,8 @@ pip3 install gdown # /home/ubuntu/.local/bin/gdown
 
 # exit then ssh again
 cd /tmp
-gdown --id 1ywI9r1UsyFpGVV_aHzLk-Z3OL-UnFBja
-gdown --id 1MXcaagodK8v8MfGkIlj3Iiz8yCONh06L
+/home/ubuntu/.local/bin/gdown --id 1ywI9r1UsyFpGVV_aHzLk-Z3OL-UnFBja
+/home/ubuntu/.local/bin/gdown --id 1MXcaagodK8v8MfGkIlj3Iiz8yCONh06L
 
 # change /tmp/friday_test.pcap to file you want to use
 sudo docker run --name netlogdivies \
@@ -15,6 +15,6 @@ sudo docker run --name netlogdivies \
     -i /test.pcap \
     -f "tcp or udp" \
     --sender kafka \
-    --broker 35.171.191.247:19092 \
+    --broker 172.31.32.165:19092 \
     --topic network-traffic \
     --mode ordered
