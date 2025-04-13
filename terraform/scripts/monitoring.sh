@@ -18,7 +18,7 @@ sudo docker run -d \
     -e CONNECTION_STRING="mongodb://mongoadmin:secret@mongodb:27017" \
     -e MAIL_USERNAME="to be added" \
     -e MAIL_PASSWORD="to be added (google email token)" \
-    -e MAIL_FROM="to be added" \
+    -e MAIL_FROM="ta.at.jomama@gmail.com" \
     -e MAIL_PORT="587" \
     -e MAIL_SERVER="smtp.gmail.com" \
     johannessetiawan/monitoring-netlog
