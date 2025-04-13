@@ -1,5 +1,9 @@
 #!/bin/bash
 JOB_MANAGER_IP=$1
+
+sudo docker pull flink:1.18.1-java11
+while ! nc -z $KAFKA_IP 19092; do sleep 5; echo 'Waiting for Kafka...'; done
+
 sudo docker run -d \
   --name taskmanager \
   --hostname taskmanager \

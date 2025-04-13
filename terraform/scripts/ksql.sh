@@ -1,10 +1,18 @@
 #!/bin/bash
 KAFKA_IP=$1
+KAFKA_HQ_IP=$2
+
+sudo docker pull confluentinc/cp-ksqldb-server:7.8.1
+
+while [ ! -f /tmp/queries.sql ]; do sleep 10; done
+while ! nc -z $KAFKA_IP 19092; do sleep 5; echo 'Waiting for Kafka...'; done
+while [[ "$(curl -s -o /dev/null -w '%{http_code}' http://$KAFKA_HQ_IP:8082/docker-kafka-server/topic/network-traffic)" != "200" ]]; do sleep 5; echo 'Waiting for Kafka topic...'; done
+
 sudo docker run -d \
     --name ksql-server \
     --hostname ksql-server \
     -p 8088:8088 \
-    -v /home/meervix/Projects/thesis/intrusion-detection/rule-detection/queries.sql:/queries.sql \
+    -v /tmp/queries.sql:/queries.sql \
     -e KSQL_CONFIG_DIR="/etc/ksql" \
     -e KSQL_BOOTSTRAP_SERVERS="$KAFKA_IP:19092" \
     -e KSQL_HOST_NAME="ksql-server" \

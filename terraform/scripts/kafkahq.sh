@@ -1,5 +1,6 @@
 #!/bin/bash
 KAFKA_IP=$1
+while ! nc -z $KAFKA_IP 19092; do sleep 5; echo 'Waiting for Kafka...'; done
 sudo docker run -d \
   --name kafkahq \
   --hostname kafkahq \

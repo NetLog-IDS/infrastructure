@@ -19,3 +19,9 @@ sudo docker run --name kafka \
     -e "KAFKA_MIN_INSYNC_REPLICAS=1" \
     -d \
     confluentinc/cp-kafka:5.5.0
+
+sudo docker exec -it kafka kafka-topics --create \
+  --bootstrap-server localhost:9092 \
+  --replication-factor 1 \
+  --partitions 1 \
+  --topic network-traffic

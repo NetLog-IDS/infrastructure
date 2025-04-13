@@ -1,12 +1,6 @@
 #!/bin/bash
-sudo docker run --name netlogdivies \
-    --hostname netlogdivies \
-    -v /mnt/extra/datasets/processed/friday_test.pcap:/test.pcap \
-    netlogdivies \
-    ./netlogdivies \
-    -i /test.pcap \
-    -f "tcp or udp" \
-    --sender kafka \
-    --broker $KAFKA_IP:9092 \
-    --topic network-traffic \
-    --mode ordered
+KAFKA_IP=$1
+
+sudo docker pull recedivies09/netlogdivies
+while ! nc -z $KAFKA_IP 19092; do sleep 5; echo 'Waiting for Kafka...'; done
+
