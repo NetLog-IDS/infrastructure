@@ -5,4 +5,4 @@ sudo docker run --name zookeeper \
     -e ZOOKEEPER_CLIENT_PORT=2181 \
     -e ZOOKEEPER_TICK_TIME=2000 \
     -d \
-    confluentinc/cp-zookeeper:5.5.0
+    confluentinc/cp-zookeeper:7.0.1

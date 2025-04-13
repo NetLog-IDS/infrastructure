@@ -7,6 +7,6 @@ Buat multiple instance jalaninnya make (https://spacelift.io/blog/terraform-ec2-
 - terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlogdivies-only.tfvars.json" -auto-approve
 - terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlogdivies-only.tfvars.json" -auto-approve
 
-- terraform plan -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-new-flink-1.tfvars.json"
-- terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-new-flink-1.tfvars.json" -auto-approve
-- terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-new-flink-1.tfvars.json" -auto-approve
+- terraform plan -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-new.tfvars.json"
+- terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-new.tfvars.json" -auto-approve
+- terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-new.tfvars.json" -auto-approve

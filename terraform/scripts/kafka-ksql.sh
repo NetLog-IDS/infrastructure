@@ -18,7 +18,7 @@ sudo docker run --name kafka \
     -e "KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1" \
     -e "KAFKA_MIN_INSYNC_REPLICAS=1" \
     -d \
-    confluentinc/cp-kafka:5.5.0
+    confluentinc/cp-kafka:7.0.1
 
 sudo docker exec -it kafka kafka-topics --create \
   --bootstrap-server localhost:9092 \
