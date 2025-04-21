@@ -20,4 +20,5 @@ sudo docker run \
       -f 'tcp or udp' \
       --sender kafka \
       --broker 13.217.149.8:19092 \
-      --topic network-traffic"
+      --topic network-traffic \
+      --replay"
