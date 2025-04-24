@@ -1,6 +1,7 @@
 #!/bin/bash
 KAFKA_IP=$1
 KAFKA_HQ_IP=$2
+MONITORING_IP=$3
 
 sudo docker pull johannessetiawan/monitoring-netlog
 sudo docker pull mongo
@@ -25,7 +26,7 @@ sudo docker run -d \
     --hostname monitoring \
     -p 8000:8000 \
     -e KAFKA_BROKER=$KAFKA_IP:19092 \
-    -e CONNECTION_STRING="mongodb://mongoadmin:secret@mongodb:27017" \
+    -e CONNECTION_STRING="mongodb://mongoadmin:secret@$MONITORING_IP:27017" \
     -e MAIL_USERNAME="Jomama" \
     -e MAIL_PASSWORD="dlmfhggzesmsqclm" \
     -e MAIL_FROM="ta.at.jomama@gmail.com" \

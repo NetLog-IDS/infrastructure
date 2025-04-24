@@ -1,3 +1,5 @@
+Pastiin scriptnya make lf bukan crlf klo dia not found bilangnya.
+
 Buat multiple instance jalaninnya make (https://spacelift.io/blog/terraform-ec2-instance):
 
 - terraform apply -var-file=specs.tfvars.json -auto-approve
