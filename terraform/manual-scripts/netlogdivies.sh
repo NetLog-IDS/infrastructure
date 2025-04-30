@@ -16,6 +16,6 @@ sudo docker run --name netlogdivies \
     -i /test.pcap \
     -f "tcp or udp" \
     --sender kafka \
-    --broker 54.164.155.233:19092 \
+    --broker 3.92.3.91:19092 \
     --topic network-traffic \
     --mode ordered

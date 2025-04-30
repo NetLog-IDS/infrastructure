@@ -40,3 +40,5 @@ terraform.rc
 /keys
 
 tfplan
+
+queries.sql

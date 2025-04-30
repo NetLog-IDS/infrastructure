@@ -1,6 +1,9 @@
 #!/bin/bash
 HOST_IP=$1
 ZOOKEEPER_IP=$2
+
+while [[ "! echo ruok | nc $ZOOKEEPER_IP 2181 | grep -q imok;" ]]; do sleep 5; echo 'Waiting for Kafka topic network-traffic...'; done
+
 sudo docker run --name kafka \
     --hostname kafka \
     -p 19092:19092 \
