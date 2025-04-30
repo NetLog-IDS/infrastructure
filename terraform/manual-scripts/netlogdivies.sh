@@ -7,6 +7,7 @@ cd /tmp
 /home/ubuntu/.local/bin/gdown --id 1MXcaagodK8v8MfGkIlj3Iiz8yCONh06L
 
 # change /tmp/friday_test.pcap to file you want to use
+# Change broker IP on --broker to Kafka virtual machine's IP
 sudo docker run --name netlogdivies \
     --hostname netlogdivies \
     -v /tmp/friday_test.pcap:/test.pcap \
@@ -15,6 +16,6 @@ sudo docker run --name netlogdivies \
     -i /test.pcap \
     -f "tcp or udp" \
     --sender kafka \
-    --broker 172.31.32.165:19092 \
+    --broker 54.164.155.233:19092 \
     --topic network-traffic \
     --mode ordered

@@ -7,6 +7,7 @@ cd /tmp
 /home/ubuntu/.local/bin/gdown --id 1MXcaagodK8v8MfGkIlj3Iiz8yCONh06L
 
 # change /tmp/friday_test.pcap to file you want to use
+# Change broker IP on --broker to Kafka virtual machine's IP
 sudo docker run \
   --rm \
   --name netlog \
