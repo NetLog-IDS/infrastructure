@@ -128,13 +128,41 @@ services:
       BOOTSTRAP_SERVER: kafka:9092
       OUTPUT_TOPIC: DOS
 
-  netlogdivies:
-    image: emyr298/netlogdivies
-    container_name: netlogdivies
-    hostname: netlogdivies
-    command:
+  # netlogdivies:
+  #   image: emyr298/netlogdivies
+  #   container_name: netlogdivies
+  #   hostname: netlogdivies
+  #   command:
+  #     [
+  #       "./netlogdivies",
+  #       "-i",
+  #       "/test.pcap",
+  #       "-f",
+  #       "tcp or udp",
+  #       "--sender",
+  #       "kafka",
+  #       "--broker",
+  #       "kafka:9092",
+  #       "--topic",
+  #       "network-traffic",
+  #       "--mode",
+  #       "ordered",
+  #     ]
+  #   depends_on:
+  #     kafka-specs:
+  #       condition: service_completed_successfully
+  #   volumes:
+  #     - /mnt/extra/datasets/processed/friday_test.pcap:/test.pcap
+  #   networks:
+  #     - ids-network
+
+  netlog:
+    image: recedivies09/spoofy
+    container_name: netlog
+    hostname: netlog
+    entrypoint:
       [
-        "./netlogdivies",
+        "/usr/local/bin/spoofy",
         "-i",
         "/test.pcap",
         "-f",
@@ -145,8 +173,7 @@ services:
         "kafka:9092",
         "--topic",
         "network-traffic",
-        "--mode",
-        "ordered",
+        "--replay",
       ]
     depends_on:
       kafka-specs:
