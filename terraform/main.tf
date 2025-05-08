@@ -16,7 +16,6 @@ variable "configuration" {
     instance_type    = string
     script_path      = string
     params           = list(string)
-    healthcheck_cmd  = string
   }))
   default = []
 }
@@ -82,7 +81,6 @@ locals {
         ami             = srv.ami
         script_path     = srv.script_path
         params          = srv.params
-        healthcheck_cmd = srv.healthcheck_cmd
       }
     ]
   ])
@@ -137,7 +135,6 @@ resource "terraform_data" "container_setup" {
         ? aws_instance.example_server[substr(param, 3, length(param) - 3)].private_ip
         : param
       ])}",
-      lookup(each.value, "healthcheck_cmd", "echo 'No healthcheck specified'")
     ]
 
     connection {
