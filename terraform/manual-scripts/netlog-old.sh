@@ -26,6 +26,7 @@ sudo docker run \
 
 # Manual
 sudo docker run \
+  --it \
   --rm \
   --name netlog \
   --hostname netlog \
@@ -33,7 +34,7 @@ sudo docker run \
   --entrypoint bash \
   recedivies09/netlog-old:latest \
   -c "/usr/local/bin/spoofy \
-      -i <Network_Inteface> \
+      -i eth0 \
       --live \
       -f 'tcp or udp' \
       --sender kafka \

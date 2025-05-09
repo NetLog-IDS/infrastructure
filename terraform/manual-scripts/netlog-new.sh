@@ -32,6 +32,7 @@ sudo docker run \
 
 # Manual
 sudo docker run \
+  --it \
   --rm \
   --name netlog \
   --hostname netlog \
