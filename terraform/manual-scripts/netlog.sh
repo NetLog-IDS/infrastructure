@@ -3,26 +3,18 @@ pip3 install gdown # /home/ubuntu/.local/bin/gdown
 
 # exit then ssh again
 cd /tmp
-# /home/ubuntu/.local/bin/gdown --id 1ywI9r1UsyFpGVV_aHzLk-Z3OL-UnFBja
-# /home/ubuntu/.local/bin/gdown --id 1MXcaagodK8v8MfGkIlj3Iiz8yCONh06L
 /home/ubuntu/.local/bin/gdown --id 1eDadFhQntu-3ED2DKtCwP4mnSuaB_zBT
+
+# DOS Only
+/home/ubuntu/.local/bin/gdown --id 1o264oRpwkKA71hnpGbKQH37jRcb30AD5
+
+# PortScan
+/home/ubuntu/.local/bin/gdown --id 1DPJvuuiXvxBt1AX9P55BThDkJ9ISk5sv
+
+sudo apt install tcpreplay
 
 # change /tmp/friday_test.pcap to file you want to use
 # Change broker IP on --broker to Kafka virtual machine's IP
-sudo docker run \
-  --rm \
-  --name netlog \
-  --hostname netlog \
-  -v /tmp/test.pcap:/test.pcap \
-  --network host \
-  --entrypoint bash \
-  recedivies09/spoofy:latest \
-  -c "/usr/local/bin/spoofy \
-      -i /test.pcap \
-      -f 'tcp or udp' \
-      --sender kafka \
-      --broker 13.217.59.217:19092 \
-      --topic network-traffic"
 
 # Manual
 sudo docker run \
@@ -33,9 +25,11 @@ sudo docker run \
   --entrypoint bash \
   recedivies09/spoofy:latest \
   -c "/usr/local/bin/spoofy \
-      -i <Network_Inteface> \
+      -i lo \
       --live \
       -f 'tcp or udp' \
       --sender kafka \
-      --broker 13.217.149.8:19092 \
+      --broker 18.234.180.181:19092 \
       --topic network-traffic"
+
+sudo tcpreplay-edit -i lo --mtu-trunc test.pcap
