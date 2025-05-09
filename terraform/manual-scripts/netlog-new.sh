@@ -16,7 +16,7 @@ sudo docker run \
   -v /tmp/test.pcap:/test.pcap \
   --network host \
   --entrypoint bash \
-  recedivies09/spoofy:latest \
+  recedivies09/netlog-new:latest \
   -c "/usr/local/bin/spoofy \
       -i /test.pcap \
       -f 'tcp or udp' \
@@ -31,7 +31,7 @@ sudo docker run \
   --hostname netlog \
   --network host \
   --entrypoint bash \
-  recedivies09/spoofy:latest \
+  recedivies09/netlog-new:latest \
   -c "/usr/local/bin/spoofy \
       -i <Network_Inteface> \
       --live \
