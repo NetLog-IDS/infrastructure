@@ -15,6 +15,20 @@ sudo apt install tcpreplay
 
 # change /tmp/friday_test.pcap to file you want to use
 # Change broker IP on --broker to Kafka virtual machine's IP
+sudo docker run \
+  --rm \
+  --name netlog \
+  --hostname netlog \
+  -v /tmp/test.pcap:/test.pcap \
+  --network host \
+  --entrypoint bash \
+  recedivies09/netlog-new:latest \
+  -c "/usr/local/bin/spoofy \
+      -i /test.pcap \
+      -f 'tcp or udp' \
+      --sender kafka \
+      --broker 13.217.59.217:19092 \
+      --topic network-traffic"
 
 # Manual
 sudo docker run \
@@ -23,7 +37,7 @@ sudo docker run \
   --hostname netlog \
   --network host \
   --entrypoint bash \
-  recedivies09/spoofy:latest \
+  recedivies09/netlog-new:latest \
   -c "/usr/local/bin/spoofy \
       -i lo \
       --live \
