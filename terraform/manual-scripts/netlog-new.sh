@@ -32,7 +32,7 @@ sudo docker run \
 
 # Manual
 sudo docker run \
-  --it \
+  -it \
   --rm \
   --name netlog \
   --hostname netlog \
@@ -47,4 +47,4 @@ sudo docker run \
       --broker 54.163.99.219:19092 \
       --topic network-traffic"
 
-sudo tcpreplay-edit -i lo --mtu-trunc test.pcap
+sudo tcpreplay-edit -i lo --mtu-trunc /tmp/dos_test.pcap
