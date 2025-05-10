@@ -44,7 +44,7 @@ sudo docker run \
       --live \
       -f 'tcp or udp' \
       --sender kafka \
-      --broker 18.234.180.181:19092 \
+      --broker 54.163.99.219:19092 \
       --topic network-traffic"
 
 sudo tcpreplay-edit -i lo --mtu-trunc test.pcap

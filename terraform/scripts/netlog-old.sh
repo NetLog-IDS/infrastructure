@@ -8,13 +8,12 @@ pip3 install gdown # /home/ubuntu/.local/bin/gdown
 
 # exit then ssh again
 cd /tmp
-/home/ubuntu/.local/bin/gdown --id 1eDadFhQntu-3ED2DKtCwP4mnSuaB_zBT
 
 # DOS Only
-/home/ubuntu/.local/bin/gdown --id 1o264oRpwkKA71hnpGbKQH37jRcb30AD5
+/home/ubuntu/.local/bin/gdown 1o264oRpwkKA71hnpGbKQH37jRcb30AD5
 
 # PortScan
-/home/ubuntu/.local/bin/gdown --id 1DPJvuuiXvxBt1AX9P55BThDkJ9ISk5sv
+/home/ubuntu/.local/bin/gdown 1DPJvuuiXvxBt1AX9P55BThDkJ9ISk5sv
 
 sudo apt install tcpreplay
 
