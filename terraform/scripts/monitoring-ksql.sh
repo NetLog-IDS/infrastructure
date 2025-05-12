@@ -25,7 +25,7 @@ sudo docker run -d \
     -p 8000:8000 \
     -e KAFKA_BROKER=$KAFKA_IP:19092 \
     -e CONNECTION_STRING="mongodb://mongoadmin:secret@$MONITORING_IP:27017" \
-    -e MAIL_USERNAME="Jomama" \
+    -e MAIL_USERNAME="ta.at.jomama@gmail.com" \
     -e MAIL_PASSWORD="dlmfhggzesmsqclm" \
     -e MAIL_FROM="ta.at.jomama@gmail.com" \
     -e MAIL_PORT="587" \
