@@ -9,23 +9,10 @@ cd /tmp
 # PortScan
 /home/ubuntu/.local/bin/gdown 1DPJvuuiXvxBt1AX9P55BThDkJ9ISk5sv
 
+sudo apt install tcpreplay
+
 # change /tmp/friday_test.pcap to file you want to use
 # Change broker IP on --broker to Kafka virtual machine's IP
-sudo docker run \
-  --rm \
-  --name netlog \
-  --hostname netlog \
-  -v /tmp/test.pcap:/test.pcap \
-  --network host \
-  --entrypoint bash \
-  recedivies09/netlog-old:latest \
-  -c "/usr/local/bin/spoofy \
-      -i /test.pcap \
-      -f 'tcp or udp' \
-      --sender kafka \
-      --broker 13.217.59.217:19092 \
-      --topic network-traffic"
-
 # Manual
 sudo docker run \
   -it \
@@ -36,9 +23,11 @@ sudo docker run \
   --entrypoint bash \
   recedivies09/netlog-old:latest \
   -c "/usr/local/bin/spoofy \
-      -i eth0 \
+      -i lo \
       --live \
       -f 'tcp or udp' \
       --sender kafka \
-      --broker 13.217.149.8:19092 \
+      --broker 98.80.78.28:19092 \
       --topic network-traffic"
+
+sudo tcpreplay-edit -i lo --mtu-trunc /tmp/dos_test.pcap
