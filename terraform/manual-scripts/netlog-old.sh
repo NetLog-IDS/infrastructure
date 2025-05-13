@@ -27,7 +27,7 @@ sudo docker run \
       --live \
       -f 'tcp or udp' \
       --sender kafka \
-      --broker 98.80.78.28:19092 \
+      --broker 3.81.172.1:19092 \
       --topic network-traffic"
 
 sudo tcpreplay-edit -i lo --mtu-trunc /tmp/dos_test.pcap
