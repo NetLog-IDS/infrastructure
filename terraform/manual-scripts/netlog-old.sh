@@ -1,4 +1,4 @@
-sudo apt-get install python3-pip
+sudo apt-get install python3-pip tcpreplay
 pip3 install gdown # /home/ubuntu/.local/bin/gdown
 
 # exit then ssh again
@@ -8,8 +8,6 @@ cd /tmp
 
 # PortScan
 /home/ubuntu/.local/bin/gdown 1DPJvuuiXvxBt1AX9P55BThDkJ9ISk5sv
-
-sudo apt install tcpreplay
 
 # change /tmp/friday_test.pcap to file you want to use
 # Change broker IP on --broker to Kafka virtual machine's IP
@@ -27,7 +25,11 @@ sudo docker run \
       --live \
       -f 'tcp or udp' \
       --sender kafka \
-      --broker 3.81.172.1:19092 \
+      --broker 3.87.99.18:19092 \
       --topic network-traffic"
 
+# For DOS
 sudo tcpreplay-edit -i lo --mtu-trunc /tmp/dos_test.pcap
+
+# For PortScan
+sudo tcpreplay-edit -i lo --mtu-trunc /tmp/port_scan_test.pcap
