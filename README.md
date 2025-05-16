@@ -12,7 +12,7 @@
 5. Run Netlog container.
 6. Run ```tcpreplay`` command with the files you want to test. Confirm that the IDS dashboard starts to display data.
 7. Wait until all the data has been replayed and the system already process the data.
-8. Get the data for intrusion detection result on IDS dashboard's MongoDB with connection string ```mongodb://mongoadmin:secret@[MONITORING_IP]:27017```. 
+8. Get the data for intrusion detection result on IDS dashboard's MongoDB with connection string ```mongodb://mongoadmin:secret@[MONITORING_IP]:27017```. The collected data is on 'network-intrusion-detection' database with 'dos' collection for DoS and 'port_scan' collection for PortScan. You can use MongoDB Compass to connect to the database and download the collections' data as .csv files.
 9. Run ```terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/system-name.tfvars.json"``` to delete the system's infrastructure. Change system-name to the system you want to test. Make sure to destroy then apply again before doing another testing.
 
 
