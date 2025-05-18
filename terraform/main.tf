@@ -91,6 +91,7 @@ resource "aws_instance" "example_server" {
 
   ami                         = each.value.ami
   instance_type               = each.value.instance_type
+  availability_zone           = "us-east-1a"
   associate_public_ip_address = true
   key_name                    = aws_key_pair.deployer.key_name
   security_groups             = [aws_security_group.allow_ssh.name]
