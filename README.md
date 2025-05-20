@@ -16,13 +16,6 @@
 9. Run ```terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/system-name.tfvars.json"``` to delete the system's infrastructure. Change system-name to the system you want to test. Make sure to destroy then apply again before doing another testing.
 
 
-- terraform apply -var-file=specs.tfvars.json -auto-approve
-- terraform destroy -var-file="specs.tfvars.json" -auto-approve
-
-- terraform plan -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlogdivies-only.tfvars.json"
-- terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlogdivies-only.tfvars.json" -auto-approve
-- terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlogdivies-only.tfvars.json" -auto-approve
-
 - terraform plan -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-new.tfvars.json"
 - terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-new.tfvars.json" -auto-approve
 - terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-new.tfvars.json" -auto-approve
@@ -30,3 +23,13 @@
 - terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-old.tfvars.json" -auto-approve
 - terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-old.tfvars.json" -auto-approve
 - terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-old.tfvars.json" -auto-approve && terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-old.tfvars.json" -auto-approve
+
+Ml
+- terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/ml-only.tfvars.json" -auto-approve
+- terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/ml-only.tfvars.json" -auto-approve
+- terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/ml-only.tfvars.json" -auto-approve && terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/ml-only.tfvars.json" -auto-approve
+
+netlog-new
+- terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog-new-only.tfvars.json" -auto-approve
+- terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog-new-only.tfvars.json" -auto-approve
+- terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog-new-only.tfvars.json" -auto-approve && terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog-new-only.tfvars.json" -auto-approve
