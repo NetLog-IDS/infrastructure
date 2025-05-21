@@ -41,6 +41,5 @@ terraform.rc
 
 tfplan
 
-queries.sql
 aws cli.txt
 *notes.txt
