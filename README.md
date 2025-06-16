@@ -69,12 +69,21 @@ This folder is the folder to create infrastructure on local. It is used for debu
 
 ### Commands
 
-Do not forget to change PCAP location on the `.yml` configuration. After that, use the following commands to run the infrastructure locally:
+Do not forget to change PCAP location on the `.yml` configuration. After that, use the commands below to run the infrastructure locally.
 
-```bash
-docker compose -f docker-compose-flink.yml up -d zookeeper kafka kafkahq kafka-specs jobmanager taskmanager netlogdivies
-```
+- ML Dataset Recalculation: Use `docker-compose-flink-recalculation.yml` for recalculating the features of CICIDS2017 flows. For converting to CSV and merging labels, please see [Analyzer Repository](https://github.com/NetLog-IDS/intrusion-detection).
 
-```bash
-docker compose -f docker-compose-ksql.yml up -d
-```
+  ```bash
+  docker compose -f docker-compose-flink-recalculation.yml up -d
+  ```
+
+- ML Local Debugging: Use `docker-compose-flink-local.yml` for debugging end-to-end ML testing in local. For the real e2e test, please use Terraform configuration instead (`../terraform`).
+
+  ```bash
+  docker compose -f docker-compose-flink-local.yml up -d
+  ```
+
+- ksqlDB Local Debugging: Use `docker-compose-flink-ksql.yml` for debugging end-to-end ksqlDB testing in local. For the real e2e test, please use Terraform configuration instead (`../terraform`).
+  ```bash
+  docker compose -f docker-compose-ksql.yml up -d
+  ```

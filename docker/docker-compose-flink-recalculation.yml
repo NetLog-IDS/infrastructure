@@ -102,62 +102,8 @@ services:
         taskmanager.memory.process.size: 2048m
         taskmanager.numberOfTaskSlots: 6
 
-  portscan:
-    image: emyr298/prediction
-    container_name: portscan_prediction
-    hostname: portscan
-    depends_on:
-      kafka-specs:
-        condition: service_completed_successfully
-    networks:
-      - ids-network
-    environment:
-      BOOTSTRAP_SERVER: kafka:9092
-      OUTPUT_TOPIC: PORT_SCAN
-
-  dos:
-    image: emyr298/prediction
-    container_name: dos_prediction
-    hostname: dos
-    depends_on:
-      kafka-specs:
-        condition: service_completed_successfully
-    networks:
-      - ids-network
-    environment:
-      BOOTSTRAP_SERVER: kafka:9092
-      OUTPUT_TOPIC: DOS
-
-  # netlogdivies:
-  #   image: emyr298/netlogdivies
-  #   container_name: netlogdivies
-  #   hostname: netlogdivies
-  #   command:
-  #     [
-  #       "./netlogdivies",
-  #       "-i",
-  #       "/test.pcap",
-  #       "-f",
-  #       "tcp or udp",
-  #       "--sender",
-  #       "kafka",
-  #       "--broker",
-  #       "kafka:9092",
-  #       "--topic",
-  #       "network-traffic",
-  #       "--mode",
-  #       "ordered",
-  #     ]
-  #   depends_on:
-  #     kafka-specs:
-  #       condition: service_completed_successfully
-  #   volumes:
-  #     - /mnt/extra/datasets/processed/friday_test.pcap:/test.pcap
-  #   networks:
-  #     - ids-network
-
   netlog:
-    image: recedivies09/spoofy
+    image: recedivies09/netlog-new
     container_name: netlog
     hostname: netlog
     entrypoint:
@@ -179,44 +125,9 @@ services:
       kafka-specs:
         condition: service_completed_successfully
     volumes:
-      - /mnt/extra/datasets/processed/friday_test.pcap:/test.pcap
+      - /media/meervix/DATA/Projects/thesis/test.pcap:/test.pcap
     networks:
       - ids-network
-
-  mongodb:
-    image: mongo
-    container_name: mongodb
-    ports:
-      - "27017:27017"
-    networks:
-      - ids-network
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: mongoadmin
-      MONGO_INITDB_ROOT_PASSWORD: secret
-    restart: unless-stopped
-
-  monitoring:
-    image: johannessetiawan/monitoring-netlog
-    container_name: monitoring
-    hostname: monitoring
-    depends_on:
-      mongodb:
-        condition: service_started
-      kafka-specs:
-        condition: service_completed_successfully
-    ports:
-      - "8000:8000"
-    networks:
-      - ids-network
-    environment:
-      KAFKA_BROKER: kafka:9092
-      CONNECTION_STRING: mongodb://mongoadmin:secret@mongodb:27017
-      MAIL_USERNAME: Jomama
-      MAIL_PASSWORD: dlmfhggzesmsqclm
-      MAIL_FROM: ta.at.jomama@gmail.com
-      MAIL_PORT: 587
-      MAIL_SERVER: smtp.gmail.com
-    restart: unless-stopped
 
 networks:
   ids-network:

@@ -1,6 +1,6 @@
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:5.5.0
+    image: confluentinc/cp-zookeeper:7.0.1
     hostname: zookeeper
     container_name: zookeeper
     ports:
@@ -12,7 +12,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
 
   kafka:
-    image: confluentinc/cp-kafka:5.5.0
+    image: confluentinc/cp-kafka:7.0.1
     hostname: kafka
     container_name: kafka
     depends_on:
@@ -103,7 +103,7 @@ services:
     tty: true
 
   netlogdivies:
-    image: netlogdivies
+    image: recedivies09/netlogdivies
     container_name: netlogdivies
     hostname: netlogdivies
     command:
@@ -126,7 +126,7 @@ services:
       kafka-specs:
         condition: service_completed_successfully
     volumes:
-      - /mnt/extra/datasets/processed/friday_test.pcap:/test.pcap
+      - /media/meervix/DATA/Projects/thesis/test.pcap:/test.pcap
     networks:
       - ids-network
 
