@@ -23,7 +23,7 @@ File and folder explanation:
 
 ## How to run and test the system
 
-Please loom at end-to-end-testing repository on [this link](https://github.com/NetLog-IDS/end-to-end-testing)
+Please look at end-to-end-testing repository on [this link](https://github.com/NetLog-IDS/end-to-end-testing)
 
 ## Some Useful Terraform Commands
 
@@ -54,10 +54,12 @@ netlog-new
 - terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog-new-only.tfvars.json" -auto-approve
 - terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog-new-only.tfvars.json" -auto-approve && terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog-new-only.tfvars.json" -auto-approve
 
-### Netlog (Bab 4)
+### Netlog
 
-- terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog.tfvars.json" -auto-approve
-- terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog.tfvars.json" -auto-approve
+Scenarios above are for end-to-end experiment. For experiment on Netlog's performance evaluation, please use the following commands:
+
+- Creating Resources: `terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog.tfvars.json" -auto-approve`
+- Destroying Resources: `terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog.tfvars.json" -auto-approve`
 
 ## `/docker` Folder
 
