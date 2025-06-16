@@ -77,7 +77,7 @@ Do not forget to change PCAP location on the `.yml` configuration. After that, u
   docker compose -f docker-compose-flink-recalculation.yml up -d
   ```
 
-- ML Local Debugging: Use `docker-compose-flink-local.yml` for debugging end-to-end ML testing in local. For the real e2e test, please use Terraform configuration instead (`../terraform`).
+- ML Local Debugging: Use `docker-compose-flink-local.yml` for debugging end-to-end ML testing in local. For the real e2e test, please use Terraform configuration instead (`../terraform`). The difference from `ML Dataset Recalculation` scenario is that this configuration also includes ML consumer, monitoring service, and mongodb.
 
   ```bash
   docker compose -f docker-compose-flink-local.yml up -d
