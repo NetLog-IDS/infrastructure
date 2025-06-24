@@ -150,7 +150,7 @@ services:
       kafka-specs:
         condition: service_completed_successfully
     volumes:
-      - /media/meervix/DATA/Projects/thesis/test.pcap:/test.pcap
+      - ${INPUT_PCAP_PATH}:/test.pcap
     networks:
       - ids-network
 

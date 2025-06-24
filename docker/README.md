@@ -6,7 +6,7 @@ This folder is the folder to create infrastructure on local. It is used for debu
 
 ### Commands
 
-Do not forget to change PCAP location on the `.yml` configuration. After that, use the commands below to run the infrastructure locally.
+Set `INPUT_PCAP_PATH` environment variable as the location of input PCAP file before running docker compose. After that, use the commands below to run the infrastructure locally.
 
 - ML Dataset Recalculation: Use `docker-compose-flink-recalculation.yml` for recalculating the features of CICIDS2017 flows. For converting to CSV and merging labels, please see [Analyzer Repository](https://github.com/NetLog-IDS/intrusion-detection).
 
@@ -24,3 +24,5 @@ Do not forget to change PCAP location on the `.yml` configuration. After that, u
   ```bash
   docker compose -f docker-compose-ksql.yml up -d
   ```
+
+If input PCAP are too big, split PCAP using `editpcap -c <number of packets each split> <input-file> <output-file-prefix>`, and use `netlog-helper.py` for sending splitted PCAPs sequentially.
