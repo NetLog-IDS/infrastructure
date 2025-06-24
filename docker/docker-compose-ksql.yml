@@ -102,13 +102,13 @@ services:
     entrypoint: /bin/sh
     tty: true
 
-  netlogdivies:
-    image: recedivies09/netlogdivies
-    container_name: netlogdivies
-    hostname: netlogdivies
-    command:
+  netlog:
+    image: recedivies09/netlog-new
+    container_name: netlog
+    hostname: netlog
+    entrypoint:
       [
-        "./netlogdivies",
+        "/usr/local/bin/spoofy",
         "-i",
         "/test.pcap",
         "-f",
@@ -119,8 +119,6 @@ services:
         "kafka:9092",
         "--topic",
         "network-traffic",
-        "--mode",
-        "ordered",
       ]
     depends_on:
       kafka-specs:

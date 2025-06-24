@@ -145,7 +145,6 @@ services:
         "kafka:9092",
         "--topic",
         "network-traffic",
-        "--replay",
       ]
     depends_on:
       kafka-specs:

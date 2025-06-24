@@ -23,33 +23,3 @@ topics:
     replication_factor: 1
     configs:
       min.insync.replicas: "1"
-
-  - name: benign
-    partitions: 1
-    replication_factor: 1
-    configs:
-      min.insync.replicas: "1"
-
-  - name: infiltration
-    partitions: 1
-    replication_factor: 1
-    configs:
-      min.insync.replicas: "1"
-
-  - name: web-attack
-    partitions: 1
-    replication_factor: 1
-    configs:
-      min.insync.replicas: "1"
-
-  - name: brute-force
-    partitions: 1
-    replication_factor: 1
-    configs:
-      min.insync.replicas: "1"
-
-  - name: bot
-    partitions: 1
-    replication_factor: 1
-    configs:
-      min.insync.replicas: "1"
