@@ -23,33 +23,33 @@ File and folder explanation:
 
 ## How to run and test the system
 
-Please look at end-to-end-testing repository on [this link](https://github.com/NetLog-IDS/end-to-end-testing)
+Please look at end-to-end-testing repository on [this link](https://github.com/NetLog-IDS/end-to-end-testing).
 
 ## Some Useful Terraform Commands
 
 #### For `both-old` IDS
 
-- terraform plan -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-old.tfvars.json" -auto-approve
-- terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-old.tfvars.json" -auto-approve
-- terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-old.tfvars.json" -auto-approve
+- Planning Resources: `terraform plan -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-old.tfvars.json" -auto-approve`
+- Creating Resources: `terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-old.tfvars.json" -auto-approve`
+- Destroying Resources: `terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-old.tfvars.json" -auto-approve`
 
 #### For `netlog-new-only` IDS
 
-- terraform plan -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog-new-only.tfvars.json" -auto-approve
-- terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog-new-only.tfvars.json" -auto-approve
-- terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog-new-only.tfvars.json" -auto-approve
+- Planning Resources: `terraform plan -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog-new-only.tfvars.json" -auto-approve`
+- Creating Resources: `terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog-new-only.tfvars.json" -auto-approve`
+- `terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/netlog-new-only.tfvars.json" -auto-approve`
 
 #### For `ml-only` IDS
 
-- terraform plan -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/ml-only.tfvars.json" -auto-approve
-- terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/ml-only.tfvars.json" -auto-approve
-- terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/ml-only.tfvars.json" -auto-approve
+- Planning Resources: `terraform plan -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/ml-only.tfvars.json" -auto-approve`
+- Creating Resources: `terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/ml-only.tfvars.json" -auto-approve`
+- Destroying Resources: `terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/ml-only.tfvars.json" -auto-approve`
 
 #### For `both-new` IDS
 
-- terraform plan -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-new.tfvars.json"
-- terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-new.tfvars.json" -auto-approve
-- terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-new.tfvars.json" -auto-approve 
+- Planning Resources: `terraform plan -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-new.tfvars.json"`
+- Creating Resources: `terraform apply -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-new.tfvars.json" -auto-approve`
+- Destroying Resources: `terraform destroy -var-file="./variables/general.tfvars.json" -var-file="./variables/specs/both-new.tfvars.json" -auto-approve`
 
 ### Netlog
 
