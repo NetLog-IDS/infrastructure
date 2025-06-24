@@ -2,10 +2,6 @@
 
 This folder is the folder to create infrastructure on local. It is used for debugging, generation, or evaluation where the results are not dependent to the infrastructure specs (e.g. feature calculation and prediction).
 
-- `docker-compose-ksql.yml`: For prediction using ksqlDB.
-- `docker-compose-flink.yml`: For dataset feature recalculation. You can ignore starting `portscan`, `dos`, `mongodb`, and `monitoring` for recalculation purpose.
-- `kafka-specs`: Declaring Kafka topics.
-
 ## Commands
 
 Use the commands below to run the infrastructure locally.
